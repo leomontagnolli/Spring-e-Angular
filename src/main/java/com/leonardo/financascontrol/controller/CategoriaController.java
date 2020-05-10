@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.leonardo.financascontrol.events.RecursoCriadoEvent;
 import com.leonardo.financascontrol.model.Categoria;
 import com.leonardo.financascontrol.repository.CategoriaRepository;
 
@@ -29,6 +31,9 @@ public class CategoriaController {
 	@Autowired
 	CategoriaRepository categoriaRepository;
 	
+	@Autowired
+	private ApplicationEventPublisher publisher;
+	
 	
 	@GetMapping
 	public List<Categoria> getAll () {
@@ -38,12 +43,11 @@ public class CategoriaController {
 	@PostMapping
 	public ResponseEntity<Categoria> criar(@RequestBody @Valid Categoria categoria, HttpServletResponse response) {
 		Categoria categoriaSalva = categoriaRepository.save(categoria);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
-		.buildAndExpand(categoriaSalva.getId()).toUri();
 		
-		response.setHeader("Location", uri.toASCIIString());
+		publisher.publishEvent(new RecursoCriadoEvent(this, response, categoriaSalva.getId()));
 		
-		return ResponseEntity.created(uri).body(categoriaSalva);
+		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaSalva);
+		
 	}
 	
 	@GetMapping("/{id}")
