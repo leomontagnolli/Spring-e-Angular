@@ -59,8 +59,6 @@ public class PessoaController {
 	}
 	
 	
-	
-	
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Optional<Pessoa>> buscarPeloCodigo(@PathVariable Long codigo) {
 		Optional<Pessoa> pessoa = pessoaRepository.findById(codigo);
@@ -87,7 +85,7 @@ public class PessoaController {
 	@PutMapping("/{codigo}")
 	@Transactional
 	public ResponseEntity<Pessoa> atualizar (@PathVariable Long codigo, @Valid @RequestBody Pessoa pessoa) {
-		Pessoa pessoaSalva = pessoaService.pessoaAtualizar(codigo, pessoa);
+		Pessoa pessoaSalva = pessoaService.atualizar(codigo, pessoa);
 
 		return ResponseEntity.ok(pessoaSalva);
 	
