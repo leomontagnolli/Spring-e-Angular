@@ -31,11 +31,9 @@ public class ErrosHandler extends ResponseEntityExceptionHandler {
 	
 	@Override
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		
-		
+		HttpHeaders headers, HttpStatus status, WebRequest request) {
 		String mensagemUsuario = messageSource.getMessage("mensagem.invalida", null, LocaleContextHolder.getLocale());
-		String mensagemDev = ex.getCause().toString();
+		String mensagemDev = ex.getCause() != null ? ex.getCause().toString() : ex.toString();
 		
 		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDev));
 		

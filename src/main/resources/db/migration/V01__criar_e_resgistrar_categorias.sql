@@ -1,4 +1,4 @@
-CREATE TABLE categoria (id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE categoria (codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(50) NOT NULL) ENGINE=InnoDB default charset=utf8;
 
 insert into categoria (nome) values ('Lazer');
