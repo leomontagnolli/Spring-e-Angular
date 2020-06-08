@@ -50,15 +50,13 @@ public class PessoaController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(pessoaSalva);
 		
 	}
-	
 	@GetMapping
 	public List<Pessoa> listarPessoas () {
 		
 		List<Pessoa> lista = pessoaRepository.findAll();	
 		return lista;	
 	}
-	
-	
+
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Optional<Pessoa>> buscarPeloCodigo(@PathVariable Long codigo) {
 		Optional<Pessoa> pessoa = pessoaRepository.findById(codigo);
@@ -71,25 +69,19 @@ public class PessoaController {
 	@DeleteMapping("/{codigo}")
 	@Transactional
 	public ResponseEntity<?> deletar (@PathVariable Long codigo) {
-		
 		Optional<Pessoa> optional = pessoaRepository.findById(codigo);
 		if(optional.isPresent()) {
 			pessoaRepository.deleteById(codigo);
 			return ResponseEntity.noContent().build();
 		}
 		return ResponseEntity.notFound().build();
-		
 	}
-	
-	
+
 	@PutMapping("/{codigo}")
 	@Transactional
 	public ResponseEntity<Pessoa> atualizar (@PathVariable Long codigo, @Valid @RequestBody Pessoa pessoa) {
 		Pessoa pessoaSalva = pessoaService.atualizar(codigo, pessoa);
-
-		return ResponseEntity.ok(pessoaSalva);
-	
-		
+		return ResponseEntity.ok(pessoaSalva);		
 	}
 	
 }
