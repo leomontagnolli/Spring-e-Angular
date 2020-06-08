@@ -40,6 +40,18 @@
     		 <artifactId>mysql-connector-java</artifactId>
 		</dependency>
 		
+		<!--  Suporte  java 8 -->
+		<dependency>
+   			 <groupId>org.hibernate</groupId>
+    		 <artifactId>hibernate-java8</artifactId>
+		</dependency>
+		
+		<!--  Suporte do jackson para datas do java 8 -->
+		<dependency>
+   			 <groupId>com.fasterxml.jackson.datatype</groupId>
+    		 <artifactId>jackson-datatype-jsr310</artifactId>
+		</dependency>
+		
 		<!--  Migrations FlyWay -->
 		<dependency>
    			 <groupId>org.flywaydb</groupId>

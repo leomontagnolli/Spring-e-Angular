@@ -22,11 +22,11 @@ public class Categoria {
 	
 	
 
-	public Long getId() {
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	public void setId(Long id) {
+	public void setCodigo(Long id) {
 		this.codigo = id;
 	}
 
