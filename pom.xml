@@ -52,6 +52,12 @@
     		 <artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
 		
+		<!--  Dependencia para identifcar campos da exception -->
+		<dependency>
+   			 <groupId>org.apache.commons</groupId>
+    		 <artifactId>commons-lang3</artifactId>
+		</dependency>
+		
 		<!--  Migrations FlyWay -->
 		<dependency>
    			 <groupId>org.flywaydb</groupId>

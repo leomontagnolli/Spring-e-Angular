@@ -42,7 +42,7 @@ public class CategoriaController {
 	public ResponseEntity<Categoria> criar(@RequestBody @Valid Categoria categoria, HttpServletResponse response) {
 		Categoria categoriaSalva = categoriaRepository.save(categoria);
 		
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, categoriaSalva.getId()));
+		publisher.publishEvent(new RecursoCriadoEvent(this, response, categoriaSalva.getCodigo()));
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaSalva);
 		

@@ -29,7 +29,7 @@ public class PessoaService {
 		
 	}	
 
-	private Pessoa buscarPessoaPorId(Long codigo) {
+	public Pessoa buscarPessoaPorId(Long codigo) {
 		Pessoa pessoaSalva = pessoaRepository.getOne(codigo);
 		if(pessoaSalva == null) {
 			throw new EmptyResultDataAccessException(1);
