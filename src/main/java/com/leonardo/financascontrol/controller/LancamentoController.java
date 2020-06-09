@@ -27,6 +27,7 @@ import com.leonardo.financascontrol.events.RecursoCriadoEvent;
 import com.leonardo.financascontrol.exceptions.ErrosHandler.Erro;
 import com.leonardo.financascontrol.model.Lancamento;
 import com.leonardo.financascontrol.repository.LancamentoRepository;
+import com.leonardo.financascontrol.repository.filter.LancamentoFilter;
 import com.leonardo.financascontrol.service.LancamentoService;
 import com.leonardo.financascontrol.service.exception.PessoaInexistenteOuInativaException;
 
@@ -47,7 +48,7 @@ public class LancamentoController {
 	private ApplicationEventPublisher publisher;
 	
 	@GetMapping
-	public List<Lancamento> listar () {
+	public List<Lancamento> pesquisar (LancamentoFilter lancamento) {
 		return lancamentoRepository.findAll();
 	}
 	
