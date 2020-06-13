@@ -45,7 +45,7 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 		
 		List<Predicate> predicates = new ArrayList<>();
 		
-		if(StringUtils.isEmpty(lancamentoFilter.getDescricao())) { 
+		if(!StringUtils.isEmpty(lancamentoFilter.getDescricao())) { 
 			predicates.add(builder.like(
 					builder.lower(root.get("descricao")), "%" + lancamentoFilter.getDescricao().toLowerCase() + "%"));
 		}

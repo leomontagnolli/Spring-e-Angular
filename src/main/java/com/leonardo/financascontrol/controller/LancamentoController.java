@@ -48,8 +48,8 @@ public class LancamentoController {
 	private ApplicationEventPublisher publisher;
 	
 	@GetMapping
-	public List<Lancamento> pesquisar (LancamentoFilter lancamento) {
-		return lancamentoRepository.findAll();
+	public List<Lancamento> pesquisar (LancamentoFilter lancamentoFilter) {
+		return lancamentoRepository.filtrar(lancamentoFilter);
 	}
 	
 	
