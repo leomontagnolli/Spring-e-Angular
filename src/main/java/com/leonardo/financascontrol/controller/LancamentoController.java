@@ -12,9 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,10 +49,10 @@ public class LancamentoController {
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;
-	
+	 
 	@GetMapping
-	public List<Lancamento> pesquisar (LancamentoFilter lancamentoFilter) {
-		return lancamentoRepository.filtrar(lancamentoFilter);
+	public Page<Lancamento> pesquisar (LancamentoFilter lancamentoFilter, Pageable pageable) {
+		return lancamentoRepository.filtrar(lancamentoFilter, pageable);
 	}
 	
 	
@@ -66,6 +69,13 @@ public class LancamentoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(lancamentoSalvo);
 		
 	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Lancamento> deletar (@PathVariable Long id) {
+		lancamentoRepository.deleteById(id);
+		return ResponseEntity.noContent().build();
+	}
+	
 	
 	@ExceptionHandler({PessoaInexistenteOuInativaException.class})
 	public ResponseEntity<Object> handlePessoaInexistente (PessoaInexistenteOuInativaException ex) {

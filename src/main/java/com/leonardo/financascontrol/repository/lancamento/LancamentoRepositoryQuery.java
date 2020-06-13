@@ -1,12 +1,14 @@
 package com.leonardo.financascontrol.repository.lancamento;
 
-import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.leonardo.financascontrol.model.Lancamento;
 import com.leonardo.financascontrol.repository.filter.LancamentoFilter;
 
 public interface LancamentoRepositoryQuery {
 	
-	public List<Lancamento> filtrar (LancamentoFilter lancamento);
+	public Page<Lancamento> filtrar (LancamentoFilter lancamento, Pageable pageable);
 
 }
