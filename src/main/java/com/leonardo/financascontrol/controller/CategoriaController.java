@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,11 +36,13 @@ public class CategoriaController {
 	
 	
 	@GetMapping
+	@Cacheable(value = "listaCategorias")
 	public List<Categoria> getAll () {
 		return categoriaRepository.findAll();
 	}
 	
 	@PostMapping
+	@CacheEvict(value = "listaCategorias", allEntries = true)
 	public ResponseEntity<Categoria> criar(@RequestBody @Valid Categoria categoria, HttpServletResponse response) {
 		Categoria categoriaSalva = categoriaRepository.save(categoria);
 		
