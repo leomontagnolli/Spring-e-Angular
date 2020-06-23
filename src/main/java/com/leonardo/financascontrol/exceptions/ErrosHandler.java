@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.apache.tomcat.util.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
