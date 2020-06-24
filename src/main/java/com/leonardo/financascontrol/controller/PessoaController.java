@@ -63,6 +63,7 @@ public class PessoaController {
 		Optional<Pessoa> pessoa = pessoaRepository.findById(codigo);
 		 if (pessoa.isPresent())
 			return ResponseEntity.ok(pessoa);
+		 //teste
 		else
 			return ResponseEntity.notFound().build();
 	}
