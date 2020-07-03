@@ -8,6 +8,7 @@ import com.leonardo.financascontrol.model.Categoria;
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 	
+	//procurar pelo nome
 	public List<Categoria> findByNome(String nome);
 
 }
